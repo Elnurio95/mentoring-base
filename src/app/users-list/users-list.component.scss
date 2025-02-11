@@ -2,14 +2,11 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    gap: 10px;
 }
 
 .users__list {
-    width: 200px;
-    height: 200px;
-    border: 1px solid black;
-    margin: 5px;
-    padding: 10px;
+    width: 250px;
     line-height: 2;
     box-shadow: 10px 5px 5px grey;
 }
@@ -21,6 +18,17 @@
     align-items: center;
     padding: 10px 15px;
     margin-top: 15px;
+} 
+
+.create__user {
+    border: 2px solid #F0BA4E;
+    background-color: #FFFFFF;
+    padding: 15px;
+}
+
+.newUser_title {
+    color: #000;
+    font-weight: 700;
 }
 
 

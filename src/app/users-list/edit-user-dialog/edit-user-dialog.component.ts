@@ -1,9 +1,7 @@
 import { NgIf } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { MAT_DIALOG_DATA, MatDialogClose, MatDialogRef } from "@angular/material/dialog";
-import { User } from "../user-interface";
-
+import { MAT_DIALOG_DATA, MatDialogClose } from "@angular/material/dialog";
 
 @Component({
     selector:'app-edit-user-dialog',
@@ -16,10 +14,10 @@ export class EditUserDialogComponent {
     readonly data = inject(MAT_DIALOG_DATA);
 
     public form = new FormGroup({
-        name: new FormControl(this.data.name, [Validators.required, Validators.minLength(2)]), 
-        email: new FormControl(this.data.email, [Validators.required, Validators.email]), 
-        website: new FormControl(this.data.website, [Validators.required, Validators.minLength(3)]), 
-        companyName: new FormControl(this.data.companyName.name, [Validators.required, Validators.minLength(2)]), 
+        name: new FormControl(this.data.user.name, [Validators.required, Validators.minLength(2)]), 
+        email: new FormControl(this.data.user.email, [Validators.required, Validators.email]), 
+        website: new FormControl(this.data.user.website, [Validators.required, Validators.minLength(3)]), 
+        companyName: new FormControl(this.data.user.company.name, [Validators.required, Validators.minLength(2)]), 
     }); 
 
     get userWithUpdatedFields() {

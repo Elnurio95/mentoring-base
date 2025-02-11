@@ -1,27 +1,18 @@
 import { NgIf } from "@angular/common";
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, inject, Output } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { User } from "../users-list/user-interface";
+import { CreateUserDialog } from "../users-list/create-user-dialog/create-user-dialog.component";
+import { UsersService } from "../users.service";
+
 
 @Component({
     selector: 'app-create-user', 
-    templateUrl: './create-user-form.html',
+    templateUrl: './create-user-form.component.html',
     styleUrl: './create-user-form.scss', 
     standalone: true,
-    imports: [NgIf, ReactiveFormsModule], 
+    imports: [ReactiveFormsModule], 
 }) 
 export class CreateUserFormComponent {
-    @Output() 
-    createUser = new EventEmitter()
-
-    public form = new FormGroup({
-        name: new FormControl('', [Validators.required, Validators.minLength(2)]), 
-        email: new FormControl('', [Validators.required, Validators.email]), 
-        website: new FormControl('', [Validators.required, Validators.minLength(3)]), 
-        companyName: new FormControl('', [Validators.required, Validators.minLength(2)]), 
-    }); 
-
-    public submitForm(): void {
-        this.createUser.emit(this.form.value);
-        this.form.reset(); 
-    }
 }

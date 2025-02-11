@@ -1,8 +1,22 @@
-<div style="width: 200px; height: 200px; border: 1px solid black; margin: 5px; padding: 10px;">
+<div>
+    <mat-card appearance="outlined"> 
+        <mat-card-header>
+            <mat-card-subtitle>{{user.name}}</mat-card-subtitle>
+            <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
+            <mat-card-subtitle>{{user.website}}</mat-card-subtitle>
+            <mat-card-subtitle>{{user.company.name}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions class="card__btns">
+            <button mat-button (click)="openDeleteDialog()">УДАЛИТЬ</button>
+            <button mat-button (click)="openEditDialog()">РЕДАКТИРОВАТЬ</button>                
+        </mat-card-actions>
+    </mat-card>    
+</div>
+<!-- <div style="width: 200px; height: 200px; margin: 5px; padding: 10px;">
     <p>{{user.name}}</p>
     <p>{{user.email}}</p>
     <p>{{user.website}}</p>
     <p>{{user.company.name}}</p>
-    <button class="user__btn" (click)="onDeleteUser(user.id)">УДАЛИТЬ ЮЗЕРА</button>
-    <button class="user__btn" (click)="openDialog()">РЕДАКТИРОВАТЬ ЮЗЕРА</button>
-</div>
+    <button class="user__btn" (click)="openDeleteDialog()">УДАЛИТЬ ЮЗЕРА</button>
+    <button class="user__btn" (click)="openEditDialog()">РЕДАКТИРОВАТЬ ЮЗЕРА</button>
+</div> -->
