@@ -31,10 +31,9 @@ export class UsersListComponent {
         dialogRef.afterClosed().subscribe((result) => {
             if (result) {
                 this.createUser(result);
-                this.openSnackBar("ЮЗЕР");
+                this.openSnackBar(result.name);
             }
         });
-
     }
 
     openSnackBar(message: string, duration: number = 5000) {
