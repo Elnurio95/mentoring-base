@@ -1,4 +1,4 @@
-<button class="create__user"  (click)="openDialog()"><span class="newUser_title">СОЗДАТЬ ПОЛЬЗОВАТЕЛЯ</span></button>
+<button class="create__user" (click)="openDialog()"><span class="newUser_title">СОЗДАТЬ ПОЛЬЗОВАТЕЛЯ</span></button>
 <div class="users" style="display: flex; flex-wrap: wrap; width: 100%;">
     <div  class="users__list" *ngFor="let user of usersService.users$| async">
         <app-user-card [user]="user" (deleteUser)="deleteUser($event)" (editUser)="editUser($event)"></app-user-card>

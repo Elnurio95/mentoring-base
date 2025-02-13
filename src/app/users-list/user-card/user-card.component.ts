@@ -14,6 +14,8 @@ import { MatCardModule } from "@angular/material/card";
 })
 
 export class UserCardComponent {
+    readonly dialog = inject(MatDialog);
+    
     @Input()
     user!: User; 
     
@@ -21,9 +23,7 @@ export class UserCardComponent {
     deleteUser = new EventEmitter<number>(); 
 
     @Output() 
-    editUser = new EventEmitter(); 
-
-    readonly dialog = inject(MatDialog); 
+    editUser = new EventEmitter();  
 
     openEditDialog(): void {
         const dialogRef = this.dialog.open(EditUserDialogComponent, {

@@ -31,13 +31,13 @@ export class UsersListComponent {
         dialogRef.afterClosed().subscribe((result) => {
             if (result) {
                 this.createUser(result);
-                this.openSnackBar("ЮЗЕР СОЗДАН");
+                this.openSnackBar("ЮЗЕР");
             }
         });
 
     }
 
-    openSnackBar(message: string, duration: number = 3000) {
+    openSnackBar(message: string, duration: number = 5000) {
         this._snackBar.open(message, "ЮЗЕР СОЗДАН", { duration: duration })
     };
 
@@ -54,13 +54,8 @@ export class UsersListComponent {
         this.usersService.deleteUser(id);
     }
 
-    editUser(user: any) {
-        this.usersService.editUser({
-            ...user,
-            company: {
-                name: user.companyName,
-            },
-        });
+    editUser(user: User) {
+        this.usersService.editUser(user); 
     }
 
     public createUser(formData: User) {
@@ -70,7 +65,7 @@ export class UsersListComponent {
             email: formData.email,
             website: formData.website,
             company: {
-                name: formData.name,
+                name: formData.company.name,
             },
         }
         )
