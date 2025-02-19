@@ -13,7 +13,7 @@ export interface User {
             lng: number
         }
     }
-    phone?: number, 
+    phone: string, 
     website: string, 
     company: {
         name: string, 
@@ -29,5 +29,6 @@ export interface CreateUser {
     website: string; 
     company: { 
         name: string; 
-    }
+    }, 
+    phone: string; 
 }

@@ -1,10 +1,12 @@
-import { NgFor } from "@angular/common";
+import { DatePipe, NgFor } from "@angular/common";
 import { Component } from "@angular/core";
 import { RouterLink } from "@angular/router";
 
+
+
 @Component ({
     selector: 'app-header',
-    imports: [NgFor, RouterLink], 
+    imports: [NgFor, RouterLink, DatePipe], 
     templateUrl: './header.component.html', 
     styleUrl: './header.component.scss',
     standalone: true,
@@ -17,6 +19,8 @@ export class headerComponent {
 
     public readonly aboutCompany = newName;
     public menuItems = menuItems; 
+
+    public currentDate = new Date(); 
 
     changeText() {
         this.menuItems = this.menuItems.map(item => this.isUpperCase ? item.toLowerCase() : item.toUpperCase()

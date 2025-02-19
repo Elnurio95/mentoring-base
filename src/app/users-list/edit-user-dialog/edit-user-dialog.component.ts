@@ -20,15 +20,9 @@ export class EditUserDialogComponent {
         website: new FormControl(this.data.user.website, [Validators.required, Validators.minLength(3)]), 
         company: new FormGroup({
             name: new FormControl(this.data.user.company.name, [Validators.required, Validators.minLength(2)]), 
-        })
+        }), 
+        phone: new FormControl(this.data.user.phone, [Validators.required, Validators.minLength(3)]), 
     }); 
-
-    // get userWithUpdatedFields() {
-    //     return {
-    //         ...this.form.value, 
-    //         id: this.data.user.id, 
-    //     }; 
-    // }
 
     public submitForm(): void {
         this.dialogRef.close({

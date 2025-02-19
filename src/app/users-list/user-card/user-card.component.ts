@@ -1,15 +1,16 @@
-import { Component, EventEmitter, inject, Input, Output } from "@angular/core";
+import { Component, EventEmitter, inject, Input, Output, Pipe } from "@angular/core";
 import { User } from "../user-interface";
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserDialogComponent } from "../edit-user-dialog/edit-user-dialog.component";
 import { DeleteUserDialogComponent } from "../delete-user-dialog/delete-user-dialog.component";
 import { MatCardModule } from "@angular/material/card";
+import { phonePipe } from "../../pipes/deleteDash.pipe";
 
 @Component({
     selector: 'app-user-card', 
     templateUrl: './user-card.component.html', 
     styleUrl: './user-card.component.scss', 
-    imports: [MatCardModule],
+    imports: [MatCardModule, phonePipe],
     standalone: true,
 })
 

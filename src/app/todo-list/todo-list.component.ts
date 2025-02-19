@@ -7,7 +7,7 @@ import { TodosService } from "../todos.service";
 import { CreateTodoFormComponent } from "../create-todo-form/create-todo-form.component";
 
 @Component({
-    selector:'app-todo-card', 
+    selector:'app-todo-list', 
     templateUrl:'./todo-list.component.html', 
     styleUrl:'./todo-list.component.scss', 
     standalone: true, 
@@ -34,7 +34,7 @@ export class TodoListComponent {
         this.todosService.editTodos(todo); 
     }
 
-    public createTodo(formData: any) {
+    public createTodo(formData: Todo) {
         this.todosService.createTodos({
             id: new Date().getTime(), 
             userId: formData.userId, 

@@ -1,10 +1,5 @@
-import { NgIf } from "@angular/common";
-import { Component, EventEmitter, inject, Output } from "@angular/core";
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { MatDialog, MatDialogRef } from "@angular/material/dialog";
-import { User } from "../users-list/user-interface";
-import { CreateUserDialog } from "../users-list/create-user-dialog/create-user-dialog.component";
-import { UsersService } from "../users.service";
+import { Component } from "@angular/core";
+import { ReactiveFormsModule } from "@angular/forms";
 
 
 @Component({

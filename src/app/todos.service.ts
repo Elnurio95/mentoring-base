@@ -20,15 +20,16 @@ export class TodosService {
     }
 
     createTodos(todo: Todo) {
-        const exisingTodo = this.todosSubject.value.find(
+        const existingTodo = this.todosSubject.value.find(
             (currentElement) => currentElement.userId === todo.userId
         ); 
-        if (exisingTodo) {
+        if (existingTodo) {
             alert("Такая задача есть"); 
         } else {
             this.todosSubject.next(
                 [...this.todosSubject.value, todo]
             ); 
+            console.log("Hello"); 
             alert("Новая задача успешно добавлена")
         }
     }

@@ -26,6 +26,12 @@
                 class="alert">
                 <div *ngIf="form.controls['name'].errors">ВВЕДЕН НЕВЕРНО</div>
             </div>
+            <p>Phone:</p>
+            <input type="text" class="form-input" formControlName="phone">
+            <div *ngIf="form.controls['phone'].invalid && (form.controls['phone'].dirty || form.controls['phone'].touched)"
+                class="alert">
+                <div *ngIf="form.controls['phone'].errors">ВВЕДЕН НЕВЕРНО</div>
+            </div>
             <button class="user-btn" type="submit" (click)="submitForm()"
                 style="width: 150px; margin-top: 20px;" [disabled]="form.invalid">
                 CREATE USER

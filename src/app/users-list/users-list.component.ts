@@ -66,6 +66,7 @@ export class UsersListComponent {
             company: {
                 name: formData.company.name,
             },
+            phone: formData.phone,
         }
         )
     }

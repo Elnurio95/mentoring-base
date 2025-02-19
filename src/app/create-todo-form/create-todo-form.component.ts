@@ -23,6 +23,7 @@ export class CreateTodoFormComponent {
 
     public submitForm(): void {
         this.createTodo.emit(this.form.value); 
+        console.log(this.form.value);
     }
 }
 
