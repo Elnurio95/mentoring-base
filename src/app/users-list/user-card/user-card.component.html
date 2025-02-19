@@ -1,4 +1,4 @@
-<div>
+<div shadow>
     <mat-card appearance="outlined"> 
         <mat-card-header>
             <mat-card-subtitle>{{user.name}}</mat-card-subtitle>
@@ -7,9 +7,9 @@
             <mat-card-subtitle>{{user.company.name}}</mat-card-subtitle>
             <mat-card-subtitle>{{user.phone | deleteDash }}</mat-card-subtitle>
         </mat-card-header>
-        <mat-card-actions class="card__btns">
-            <button mat-button (click)="openDeleteDialog()">УДАЛИТЬ</button>
-            <button mat-button (click)="openEditDialog()">РЕДАКТИРОВАТЬ</button>                
-        </mat-card-actions>
+        <div class="card__btns">
+            <button style="color:darkolivegreen; background-color:azure ;" mat-raised-button (click)="openDeleteDialog()">УДАЛИТЬ</button>
+            <button style="color: #ffff; background-color:blueviolet ;" mat-raised-button (click)="openEditDialog()">РЕДАКТИРОВАТЬ</button>                
+        </div>
     </mat-card>    
 </div>

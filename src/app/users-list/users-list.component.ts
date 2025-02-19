@@ -14,7 +14,7 @@ import { CreateUserDialog } from "./create-user-dialog/create-user-dialog.compon
     templateUrl: './users-list.component.html',
     styleUrl: './users-list.component.scss',
     standalone: true,
-    imports: [NgFor, UserCardComponent, AsyncPipe, ReactiveFormsModule,],
+    imports: [NgFor, UserCardComponent, AsyncPipe, ReactiveFormsModule],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 

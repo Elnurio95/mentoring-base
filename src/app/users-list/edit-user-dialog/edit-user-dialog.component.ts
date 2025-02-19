@@ -1,13 +1,14 @@
 import { NgIf } from "@angular/common";
-import { Component, EventEmitter, inject, Output } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogClose, MatDialogRef } from "@angular/material/dialog";
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @Component({
     selector:'app-edit-user-dialog',
     templateUrl:'./edit-user-dialog.component.html', 
     styleUrl:'./edit-user-dialog.component.scss', 
-    imports: [ReactiveFormsModule, NgIf, MatDialogClose], 
+    imports: [ReactiveFormsModule, NgIf, MatDialogClose, MatTooltipModule], 
     standalone: true 
 })
 export class EditUserDialogComponent {
