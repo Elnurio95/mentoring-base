@@ -9,6 +9,7 @@ import { UserService } from "../user.service";
 
 
 
+
 @Component ({
     selector: 'app-header',
     imports: [NgFor, RouterLink, DatePipe, YellowOnBotton, AsyncPipe, NgIf], 
@@ -42,20 +43,14 @@ export class headerComponent {
         });
     
         dialogRef.afterClosed().subscribe((result: string) => {
-          console.log(result); 
-          if (result === 'admin') {
-            this.userService.loginAsAdmin()
-          } else if (result === 'user') {
-            this.userService.loginAsUser()
-          } else {
-            return undefined; 
+          if (result) {
+            result === 'admin' ? this.userService.loginAsAdmin() : this.userService.loginAsUser(); 
           }
         });
       }
 
       public logout() {
         if (confirm("Вы точно хотите выйти ?")) {
-          console.log("logout");
           return this.userService.logout(); 
         }
         else return false; 
