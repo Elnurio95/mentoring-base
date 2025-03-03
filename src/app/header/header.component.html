@@ -15,6 +15,12 @@
                             <li class="header__ist-left">
                                 <a href="#" class="header__list-link">Каталог</a>
                             </li>
+                            <li class="header__ist-left">
+                                <a href="#" class="header__list-link" routerLink="/users">Юзеры</a>
+                            </li>
+                            <li class="header__ist-left">
+                                <a href="#" class="header__list-link" routerLink="/admin">Админка</a>
+                            </li>
                         </ul>
                     </nav>
                     <div class="todayDate">Сегодняшняя дата: {{currentDate | date: 'medium'}}</div>
@@ -35,6 +41,10 @@
                         <img  src="../assets/basket.svg" alt="корзина">
                         Пусто
                     </button>
+                    <div>
+                        <button class="button" (click)="openDialog()" *ngIf="(userService.users$ | async)">Войти</button>
+                        <button class="button" (click)="logout()">Выйти</button>
+                    </div>
                 </div>
             </div>
         </div>
