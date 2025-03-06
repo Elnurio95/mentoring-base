@@ -5,6 +5,8 @@ import { Todo } from "./todo-interface";
 import { todosApiService } from "../todo-api.service";
 import { TodosService } from "../todos.service";
 import { CreateTodoFormComponent } from "../create-todo-form/create-todo-form.component";
+import { Store } from "@ngrx/store";
+import { TodoActions } from "./store/todo.actions";
 
 @Component({
     selector:'app-todo-list', 
@@ -18,20 +20,25 @@ export class TodoListComponent {
     readonly todosApiService = inject(todosApiService);
     readonly todosService = inject(TodosService);  
 
+    private readonly store = inject(Store); 
+
     constructor() {
         this.todosApiService.getTodos().subscribe(
             (response: Todo[]) => {
                 this.todosService.setTodos(response); 
+                this.store.dispatch(TodoActions.set({ todos: response})); 
             }
         )
     }
 
     deleteTodo(id: number) {
         this.todosService.deleteTodo(id); 
+        this.store.dispatch(TodoActions.delete({ id })); 
     }
 
     editTodo(todo: Todo) {
         this.todosService.editTodos(todo); 
+        this.store.dispatch(TodoActions.edit({ todo })); 
     }
 
     public createTodo(formData: Todo) {
@@ -40,6 +47,14 @@ export class TodoListComponent {
             userId: formData.userId, 
             title: formData.title, 
             completed: formData.completed, 
-        })
+        }); 
+        this.store.dispatch(TodoActions.create({
+            todos: {
+                id: new Date().getTime(), 
+                userId: formData.userId, 
+                title: formData.title, 
+                completed: formData.completed, 
+            },
+        })); 
     }
 }
