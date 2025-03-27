@@ -9,52 +9,57 @@ import { Store } from "@ngrx/store";
 import { TodoActions } from "./store/todo.actions";
 
 @Component({
-    selector:'app-todo-list', 
-    templateUrl:'./todo-list.component.html', 
-    styleUrl:'./todo-list.component.scss', 
-    standalone: true, 
+    selector: 'app-todo-list',
+    templateUrl: './todo-list.component.html',
+    styleUrl: './todo-list.component.scss',
+    standalone: true,
     imports: [NgFor, TodoCardComponent, AsyncPipe, CreateTodoFormComponent]
 })
 
 export class TodoListComponent {
     readonly todosApiService = inject(todosApiService);
-    readonly todosService = inject(TodosService);  
+    readonly todosService = inject(TodosService);
 
-    private readonly store = inject(Store); 
+    private readonly store = inject(Store);
+
+    ngOnInit() {
+        this.store.dispatch(TodoActions.loadTodo());
+    }
+
 
     constructor() {
         this.todosApiService.getTodos().subscribe(
             (response: Todo[]) => {
-                this.todosService.setTodos(response); 
-                this.store.dispatch(TodoActions.set({ todos: response})); 
+                this.todosService.setTodos(response);
+                this.store.dispatch(TodoActions.set({ todo: response }));
             }
         )
     }
 
     deleteTodo(id: number) {
-        this.todosService.deleteTodo(id); 
-        this.store.dispatch(TodoActions.delete({ id })); 
+        this.todosService.deleteTodo(id);
+        this.store.dispatch(TodoActions.delete({ id }));
     }
 
     editTodo(todo: Todo) {
-        this.todosService.editTodos(todo); 
-        this.store.dispatch(TodoActions.edit({ todo })); 
+        this.todosService.editTodos(todo);
+        this.store.dispatch(TodoActions.edit({ todo }));
     }
 
     public createTodo(formData: Todo) {
         this.todosService.createTodos({
-            id: new Date().getTime(), 
-            userId: formData.userId, 
-            title: formData.title, 
-            completed: formData.completed, 
-        }); 
+            id: new Date().getTime(),
+            userId: formData.userId,
+            title: formData.title,
+            completed: formData.completed,
+        });
         this.store.dispatch(TodoActions.create({
-            todos: {
-                id: new Date().getTime(), 
-                userId: formData.userId, 
-                title: formData.title, 
-                completed: formData.completed, 
+            todo: {
+                id: new Date().getTime(),
+                userId: formData.userId,
+                title: formData.title,
+                completed: formData.completed,
             },
-        })); 
+        }));
     }
 }

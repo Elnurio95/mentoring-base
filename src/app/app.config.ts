@@ -13,7 +13,7 @@ export const appConfig: ApplicationConfig = {
   providers: 
     [provideRouter(routes),
     provideHttpClient(), provideAnimationsAsync(), provideStore({
-        users: userReducer, 
-        todo: todoReducer, 
+        [userReducer.name]: userReducer.reducer,  
+        [todoReducer.name]: todoReducer.reducer, 
     }), provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })]
 };

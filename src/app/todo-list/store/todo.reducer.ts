@@ -1,29 +1,59 @@
-import { createReducer, on } from "@ngrx/store";
+import { createFeature, createReducer, on } from "@ngrx/store";
 import { Todo } from "../todo-interface";
 import { TodoActions } from "./todo.actions";
 
-const initialState: { todos: Todo[]} = {
-    todos: [], 
-}; 
+export interface todoState {
+    todo: Todo[],
+    error: string | null,
+    loading: boolean;
+}
 
-export const todoReducer = createReducer (
-    initialState, 
-    on(TodoActions.set, (state, payload) => ({
-        ...state, todo: payload.todos, 
-    })), 
-    on(TodoActions.edit, (state, payload) => ({
-        ...state, todos: state.todos.map((todo) => {
-            if (todo.id === payload.todos.id) {
-                return payload.todos; 
-            } else {
-                return todo; 
-            }
-        }),
-    })), 
-    on(TodoActions.create, (state, payload) => ({
-        ...state, todos: [...state.todos, payload.todos], 
-    })), 
-    on(TodoActions.delete, (state, payload) => ({
-        ...state, todos: state.todos.filter((todo) => todo.id !== payload.id), 
-    }))
+export const initialState: todoState = {
+    todo: [],
+    error: null,
+    loading: false,
+}
+
+export const todosKey = 'todos';
+
+export const todoReducer = createFeature({
+    name: todosKey,
+    reducer: createReducer(
+        initialState,
+        on(TodoActions.set, (state, payload) => ({
+            ...state, todo: payload.todo,
+        })),
+        on(TodoActions.edit, (state, payload) => ({
+            ...state, todos: state.todo.map((todo) => {
+                if (todo.id === payload.todo.id) {
+                    return payload.todo;
+                } else {
+                    return todo;
+                }
+            }),
+        })),
+        on(TodoActions.create, (state, payload) => ({
+            ...state, todos: [...state.todo, payload.todo],
+        })),
+        on(TodoActions.delete, (state, payload) => ({
+            ...state, todos: state.todo.filter((todo) => todo.id !== payload.id),
+        })),
+        on(TodoActions.loadTodo, state => ({
+            ...state,
+            loading: true,
+            error: null,
+        })),
+        on(TodoActions.loadTodoSuccess, (state, { todo }) => ({
+            ...state,
+            todo: todo,
+            loading: false,
+            error: null,
+        })),
+        on(TodoActions.loadTodoFailure, (state, { error }) => ({
+            ...state,
+            loading: false,
+            error: error,
+        }))
+    )
+}
 ) 

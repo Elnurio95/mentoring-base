@@ -10,7 +10,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { CreateUserDialog } from "./create-user-dialog/create-user-dialog.component";
 import { Store } from "@ngrx/store";
 import { UsersActions } from "./store/user.actions";
-import { selectUSers } from "./store/users.selectors";
+import { selectUsers } from "./store/user.selector";
 
 @Component({
     selector: 'app-users-list',
@@ -29,7 +29,11 @@ export class UsersListComponent {
     readonly dialog = inject(MatDialog);
     private _snackBar = inject(MatSnackBar);
     private readonly store = inject(Store); 
-    public readonly users$ = this.store.select(selectUSers); 
+    public readonly users$ = this.store.select(selectUsers); 
+
+    ngOnInit() {
+        this.store.dispatch(UsersActions.loadUser()); 
+    }
 
     openDialog(): void {
         const dialogRef = this.dialog.open(CreateUserDialog)
@@ -49,7 +53,7 @@ export class UsersListComponent {
         this.usersApiService.getUsers().subscribe(
             (response: User[]) => {
                 this.usersService.setUsers(response);
-                this.store.dispatch(UsersActions.set({users: response})); 
+                this.store.dispatch(UsersActions.set({user: response})); 
             }
         )
     }
