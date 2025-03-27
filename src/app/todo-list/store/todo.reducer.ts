@@ -24,19 +24,15 @@ export const todoReducer = createFeature({
             ...state, todo: payload.todo,
         })),
         on(TodoActions.edit, (state, payload) => ({
-            ...state, todos: state.todo.map((todo) => {
-                if (todo.id === payload.todo.id) {
-                    return payload.todo;
-                } else {
-                    return todo;
-                }
+            ...state, todos: state.todo.map((todo: Todo) => {
+                todo.id === payload.todo.id ? payload.todo : todo; 
             }),
         })),
         on(TodoActions.create, (state, payload) => ({
             ...state, todos: [...state.todo, payload.todo],
         })),
         on(TodoActions.delete, (state, payload) => ({
-            ...state, todos: state.todo.filter((todo) => todo.id !== payload.id),
+            ...state, todos: state.todo.filter((todo: Todo) => todo.id !== payload.id),
         })),
         on(TodoActions.loadTodo, state => ({
             ...state,

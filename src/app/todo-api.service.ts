@@ -4,6 +4,9 @@ import { Todo } from "./todo-list/todo-interface";
 
 @Injectable({providedIn: 'root'}) 
 export class todosApiService {
+    static getTodos() {
+      throw new Error("Method not implemented.");
+    }
     readonly apiService = inject(HttpClient); 
 
     getTodos() {

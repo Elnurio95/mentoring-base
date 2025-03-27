@@ -25,12 +25,8 @@ export const userReducer = createFeature({
         })),
         on(UsersActions.edit, (state, payload) => ({
             ...state,
-            users: state.user.map((user) => {
-                if (user.id === payload.user.id) {
-                    return payload.user;
-                } else {
-                    return user;
-                }
+            users: state.user.map((user: User) => {
+                user.id === payload.user.id ? payload.user : user; 
             }),
         })),
         on(UsersActions.create, (state, payload) => ({
@@ -39,7 +35,7 @@ export const userReducer = createFeature({
         })),
         on(UsersActions.delete, (state, payload) => ({
             ...state,
-            users: state.user.filter((user) => user.id !== payload.id),
+            users: state.user.filter((user: User) => user.id !== payload.id),
         })),
         on(UsersActions.loadUser, state => ({
             ...state,

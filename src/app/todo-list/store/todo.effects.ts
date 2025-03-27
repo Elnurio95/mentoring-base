@@ -8,12 +8,12 @@ import { Todo } from "../todo-interface";
 export const loadUsers = createEffect(
     () => {
         const actions$ = inject(Actions);
-        const usersServiceApi = inject(todosApiService);
+        const TodosApiService = inject(todosApiService);
     
         return actions$.pipe(
           ofType(TodoActions.loadTodo),
           switchMap(() =>
-            usersServiceApi.getTodos().pipe(
+            TodosApiService.getTodos().pipe(
               map((todo: Todo[]) => TodoActions.loadTodoSuccess({ todo })),
               catchError(error => {
                 return of(TodoActions.loadTodoFailure({ error: error.message }));
